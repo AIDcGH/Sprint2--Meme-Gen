@@ -12,6 +12,10 @@ function onResize() {
     
 }
 
+function toggleDropdown() {
+    document.querySelector('.dropdown-menu').classList.toggle('open')
+}
+
 ////////////////////// generate meme
 
 // canvas

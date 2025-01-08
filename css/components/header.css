@@ -7,6 +7,11 @@ header h1 {
     color: var(--accent-color);
 }
 
+nav {
+    display: flex;
+    gap: var(--space-md);
+}
+
 nav button {
     color: var(--primary-text);
     border-radius: 4px;
@@ -16,4 +21,29 @@ nav button {
 
 nav button:hover {
     background-color: var(--accent-color);
+}
+
+nav .dropdown-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--primary-bg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-top: var(--space-sm);
+    gap: var(--space-md);
+}
+
+nav .dropdown-menu.open {
+    display: flex;
+}
+
+nav .dropdown-btn {
+    font-size: var(--font-size-large);
+    color: var(--primary-text);
+    border-radius: 4px;
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
 }
