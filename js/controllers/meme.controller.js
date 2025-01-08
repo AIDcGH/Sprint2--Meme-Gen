@@ -12,7 +12,7 @@ function onResize() {
     
 }
 
-////////////////////// edit meme
+////////////////////// generate meme
 
 // canvas
 function onDown(ev) {
@@ -28,6 +28,10 @@ function onUp() {
 }
 
 // text control
+function onText(txt) {
+    
+}
+
 function onBtnMove(amount) {
     
 }
@@ -45,7 +49,7 @@ function onDelLine() {
 }
 
 // text editing
-function onFontSizeChange(amount) {
+function onChangeFontSize(amount) {
     
 }
 
