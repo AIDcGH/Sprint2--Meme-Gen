@@ -6,8 +6,70 @@
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    
+<body onload="onInit()">
+    <header>
+        <h1>LOGO</h1>
+        <nav>
+            <button onclick="">Gallery</button>
+            <button onclick="">Memes</button>
+            <button onclick="">About</button>
+        </nav>
+    </header>
+    <main>
+        <section class="find">
+            <input class="search" type="search" placeholder="Search">
+            <article class="kw-filter"></article>
+            <button class="more-kw"></button>
+        </section>
+        <section class="memes-gallery">
+
+        </section>
+        <section class="saved-memes">
+
+        </section>
+        <section class="about">
+
+        </section>
+        <section class="meme-editor" onresize="onResize()">
+            <canvas width="1" height="1" onmousedown="onDown(event)" onmousemove="onMove(event)" onmouseup="onUp()"
+            ontouchstart="onDown(event)" ontouchmove="onMove(event)" ontouchend="onUp()"></canvas>
+            <section class="text-editor">
+                <section class="control-text">
+                    <input class="edit" type="text">
+                    <button onclick="onBtnMove(-5)">&mapstodown;</button>
+                    <button onclick="onBtnMove(5)">&mapstoup;</button>
+                    <button onclick="onSwitchLine()">&vArr;</button>
+                    <button onclick="onAddLine()">&#10010;</button>
+                    <button onclick="onDelLine()">&#10006;</button>
+                </section>
+                <section class="edit-text">
+                    <section class="font">
+                        <button onclick="onChangeFontSize(1)">A&#8314;</button>
+                        <button onclick="onChangeFontSize(-1)">A&#8315;</button>
+                        <select onchange="onChangeFont(this.value)">
+                            <option value="Impact">Impact</option>
+                        </select>
+                    </section>
+                    <section class="clr">
+                        <button class="font-clr" onclick="onSetClr()">&#9733;</button>
+                        <input type="color" name="clr-input" id="clr-input">
+                        <button class="outline-clr" onclick="onSetClr(true)">&#9734;</button>
+                    </section>
+                </section>
+                <section class="stickers">
+                    <button onclick="onAddLine('😖')">😖</button>
+                    <button onclick="onAddLine('🧢')">🧢</button>
+                    <button onclick="onAddLine('💣')">💣</button>
+                    <button onclick="onAddLine('🍔')">🍔</button>
+                </section>
+            </section>
+            <aside class="send-meme">
+                <button onclick="onSaveMeme()">&#8688;</button>
+                <button onclick="onDownloadMeme()">&#8681;</button>
+                <button onclick="onShareMeme()">&#8682;</button>
+            </aside>
+        </section>
+    </main>
 
     <script src="js/services/utils.service.js"></script>
     <script src="js/services/meme.service.js"></script>
