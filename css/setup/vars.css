@@ -1,22 +1,22 @@
 :root {
     /* color palette */
-    --primary-bg: #121212;
-    --secondary-bg: #1f1f1f;
-    --primary-text: #f0f0f0;
-    --secondary-text: #b0b0b0;
-    --accent-color: #ff5733;
+    --primary-bg: #111;
+    --secondary-bg: #222;
+    --primary-text: #eee;
+    --secondary-text: #aaa;
+    --accent-color: #296;
     --button-bg: #333;
     --button-hover-bg: #444;
-    --input-bg: #222;
-    --input-text-color: #f0f0f0;
+    --input-bg: #444;
+    --input-text-color: #eee;
 
     /* spacing */
-    --space-sm: 8px;
-    --space-md: 16px;
-    --space-lg: 24px;
+    --space-sm: .5em;
+    --space-md: 1em;
+    --space-lg: 1.5em;
 
     /* font size */
+    --font-size-small: 14px;
     --font-size-base: 16px;
     --font-size-large: 18px;
-    --font-size-small: 14px;
 }
