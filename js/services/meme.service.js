@@ -82,3 +82,5 @@ function delLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1)
     gMeme.selectedLineIdx = 0
 }
+
+// text editing
