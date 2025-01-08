@@ -1,0 +1,12 @@
+.memes-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.memes-gallery img {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid var(--secondary-bg);
+}

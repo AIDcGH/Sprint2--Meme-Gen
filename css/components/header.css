@@ -1,0 +1,19 @@
+header {
+    background-color: var(--primary-bg);
+    padding: var(--space-md);
+}
+
+header h1 {
+    color: var(--accent-color);
+}
+
+nav button {
+    color: var(--primary-text);
+    border-radius: 4px;
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-large);
+}
+
+nav button:hover {
+    background-color: var(--accent-color);
+}

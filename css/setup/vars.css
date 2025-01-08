@@ -1,0 +1,22 @@
+:root {
+    /* color palette */
+    --primary-bg: #121212;
+    --secondary-bg: #1f1f1f;
+    --primary-text: #f0f0f0;
+    --secondary-text: #b0b0b0;
+    --accent-color: #ff5733;
+    --button-bg: #333;
+    --button-hover-bg: #444;
+    --input-bg: #222;
+    --input-text-color: #f0f0f0;
+
+    /* spacing */
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+
+    /* font size */
+    --font-size-base: 16px;
+    --font-size-large: 18px;
+    --font-size-small: 14px;
+}

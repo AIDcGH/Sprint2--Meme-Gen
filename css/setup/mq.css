@@ -1,0 +1,42 @@
+@media (max-width: 768px) {
+    header {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .find {
+        grid-template-columns: 1fr;
+    }
+
+    .meme-editor {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    .memes-gallery {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        display: none;
+    }
+
+    nav.dropdown {
+        display: block;
+    }
+
+    .find {
+        grid-template-columns: 1fr;
+    }
+
+    .memes-gallery {
+        grid-template-columns: 1fr;
+    }
+}

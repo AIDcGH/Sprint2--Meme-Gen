@@ -1,0 +1,25 @@
+.find {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-md);
+}
+
+.search {
+    padding: var(--space-sm);
+    font-size: var(--font-size-large);
+    border-radius: 6px;
+    width: 100%;
+}
+
+.kw-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.more-kw {
+    background-color: var(--accent-color);
+    border: none;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 8px;
+}

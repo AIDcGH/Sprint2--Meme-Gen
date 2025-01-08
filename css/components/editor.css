@@ -1,0 +1,29 @@
+.meme-editor {
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+canvas {
+    border: 2px solid var(--secondary-text);
+    border-radius: 8px;
+}
+
+.text-editor {
+    background-color: var(--primary-bg);
+    padding: var(--space-md);
+    border-radius: 8px;
+}
+
+.text-editor .control-text button {
+    margin: var(--space-sm) 0;
+}
+
+.text-editor .font select,
+.text-editor .clr input {
+    margin: var(--space-sm) 0;
+}
+
+.send-meme button {
+    background-color: var(--accent-color);
+}
