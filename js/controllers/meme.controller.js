@@ -57,7 +57,7 @@ function onChangeFont(font) {
     
 }
 
-function onSetClr(isOutline = false) {
+function onChangeClr(isOutline = false) {
     
 }
 

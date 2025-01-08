@@ -70,11 +70,11 @@ function switchLine() {
         curIdx !== gMeme.lines.length - 1 ? curIdx + 1 : 0
 }
 
-function addLine(txt, size = 48, color = '#fff') {
+function addLine(txt, size = 48, clr = '#fff') {
     return {
         txt,
         size,
-        color
+        clr
     }
 }
 
@@ -84,3 +84,13 @@ function delLine() {
 }
 
 // text editing
+function changeFontSize(amount) {
+    if (gMeme.lines[selectedLineIdx].size <= 4) return
+    if (gMeme.lines[selectedLineIdx].size >= 400) return
+
+    gMeme.lines[selectedLineIdx].size += amount
+}
+
+function changeClr(newClr) {
+    gMeme.lines[selectedLineIdx].clr = newClr
+}
