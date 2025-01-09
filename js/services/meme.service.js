@@ -54,6 +54,7 @@ function createMeme(selectedImgId) {
         selectedImgId,
         selectedLineIdx: 0,
         lines: [addLine({ x: 10, y: 10 }, 'Top text'), addLine({ x: 0, y: 100 }, 'Bottom text')]
+        lines: [addLine({ x: 10, y: 10 }, 'Top text'), addLine({ x: 0, y: 100 }, 'Bottom text')]
     }
 }
 
