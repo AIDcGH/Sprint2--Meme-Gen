@@ -6,7 +6,6 @@ const gKeywordSearchCountMap = _getKwSearchCountMap()
 
 var gMeme
 createMeme(gImgs[0].id)
-createMeme(gImgs[0].id)
 
 function _createImgs() {
     return [
@@ -54,7 +53,6 @@ function createMeme(selectedImgId) {
         selectedImgId,
         selectedLineIdx: 0,
         lines: [addLine({ x: 10, y: 10 }, 'Top text'), addLine({ x: 0, y: 100 }, 'Bottom text')]
-        lines: [addLine({ x: 10, y: 10 }, 'Top text'), addLine({ x: 0, y: 100 }, 'Bottom text')]
     }
 }
 
@@ -79,6 +77,8 @@ function getLinesStartPos() {
         linesStartPos.push(line.pos)
         return linesStartPos
     }, [])
+}
+
 function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
@@ -92,7 +92,6 @@ function getLinesStartPos() {
 
 // text control
 function lineClickedIdx(clickedPos, ctx) {
-    console.log(clickedPos)
     const clickedLineIdx = gMeme.lines.findIndex(line => {
         const { pos, txt } = line
         const {
@@ -116,7 +115,6 @@ function setLineDrag(isDrag) {
 
 function setLineText(newTxt) {
     getSelectedLine().txt = newTxt
-    getSelectedLine().txt = newTxt
 }
 
 function switchLine() {
@@ -126,7 +124,6 @@ function switchLine() {
 }
 
 function addLine(pos, txt, size = 48, clr = '#fff') {
-    return { pos, isDrag: false, txt, size, clr }
     return { pos, isDrag: false, txt, size, clr }
 }
 
@@ -139,14 +136,10 @@ function delLine() {
 function changeFontSize(amount) {
     if (getSelectedLine().size <= 4) return
     if (getSelectedLine().size >= 400) return
-    if (getSelectedLine().size <= 4) return
-    if (getSelectedLine().size >= 400) return
 
-    getSelectedLine().size += amount
     getSelectedLine().size += amount
 }
 
 function changeClr(newClr) {
-    getSelectedLine().clr = newClr
     getSelectedLine().clr = newClr
 }
