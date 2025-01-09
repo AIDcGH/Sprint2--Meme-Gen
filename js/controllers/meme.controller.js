@@ -1,6 +1,12 @@
 'use strict'
 
+var gElCanvas
+var gCtx
+var gLinesStartPos = []
+
 function onInit() {
+    gElCanvas = document.querySelector('canvas')
+    gCtx = gElCanvas.getContext('2d')
     renderGallery()
     renderKeywords()
 }
@@ -22,11 +28,14 @@ function renderGallery() {
 }
 
 function renderMeme() {
-    
+
 }
 
 function onResize() {
-    
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.offsetWidth
+    gElCanvas.height = elContainer.offsetHeight
+    renderMeme()
 }
 
 function toggleDropdown() {
@@ -37,60 +46,81 @@ function toggleDropdown() {
 
 // canvas
 function onDown(ev) {
-    
+    const pos = getEvPos(ev)
 }
 
 function onMove(ev) {
-    
+
 }
 
 function onUp() {
-    
+
 }
 
+function getEvPos(ev) {
+  const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+
+  let pos = {
+    x: ev.offsetX,
+    y: ev.offsetY,
+  }
+
+  if (TOUCH_EVS.includes(ev.type)) {
+    // Prevent triggering the mouse ev
+    ev.preventDefault()
+    // Gets the first touch point
+    ev = ev.changedTouches[0]
+    // Calc the right pos according to the touch screen
+    pos = {
+      x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+      y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+    }
+  }
+  return pos
+}
 // text control
 function onText(txt) {
-    
+
 }
 
 function onBtnMove(amount) {
-    
+
 }
 
 function onSwitchLine() {
-    
+
 }
 
 function onAddLine(sticker = null) {
-    
+
 }
 
 function onDelLine() {
-    
+
 }
 
 // text editing
 function onChangeFontSize(amount) {
-    
+
 }
 
 function onChangeFont(font) {
-    
+
 }
 
 function onChangeClr(isOutline = false) {
-    
+
 }
 
 // meme control
 function onSaveMeme() {
-    
+
 }
 
 function onDownloadMeme() {
-    
+
 }
 
 function onShareMeme() {
-    
+
 }

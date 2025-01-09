@@ -31,9 +31,11 @@
         <section class="about">
 
         </section>
-        <section class="meme-editor" onresize="onResize()">
-            <canvas width="100" height="100" onmousedown="onDown(event)" onmousemove="onMove(event)" onmouseup="onUp()"
-            ontouchstart="onDown(event)" ontouchmove="onMove(event)" ontouchend="onUp()"></canvas>
+        <section class="meme-editor">
+            <section class="canvas-container" onresize="onResize()">
+                <canvas width="100" height="100" onmousedown="onDown(event)" onmousemove="onMove(event)" onmouseup="onUp()"
+                ontouchstart="onDown(event)" ontouchmove="onMove(event)" ontouchend="onUp()"></canvas>
+            </section>
             <section class="text-editor">
                 <section class="control-text">
                     <input class="edit" type="text" onchange="onText(this.value)">

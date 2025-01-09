@@ -51,7 +51,7 @@ function createMeme(selectedImgId) {
     gMeme = {
         selectedImgId,
         selectedLineIdx: 0,
-        lines: [addLine('Top text'), addLine('Bottom text')]
+        lines: [addLine({ x: 0, y: 0 }, 'Top text'), addLine({ x: 0, y: 100 }, 'Bottom text')]
     }
 }
 
@@ -67,6 +67,10 @@ function getImgs() {
     return gImgs
 }
 
+function isLineClicked(clickedPos) {
+    
+}
+
 // text control
 function setLineText(newTxt) {
     gMeme.lines[gMeme.selectedLineIdx] = newTxt
@@ -78,8 +82,9 @@ function switchLine() {
         curIdx !== gMeme.lines.length - 1 ? curIdx + 1 : 0
 }
 
-function addLine(txt, size = 48, clr = '#fff') {
+function addLine(pos, txt, size = 48, clr = '#fff') {
     return {
+        pos,
         txt,
         size,
         clr
