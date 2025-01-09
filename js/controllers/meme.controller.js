@@ -3,10 +3,12 @@
 var gElCanvas
 var gCtx
 var gLinesStartPos
+var gLinesStartPos
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+    gLinesStartPos = getLinesStartPos()
     gLinesStartPos = getLinesStartPos()
     renderGallery()
     renderKeywords()
