@@ -5,6 +5,7 @@ const gImgs = _createImgs()
 const gKeywordSearchCountMap = _getKwSearchCountMap()
 
 var gMeme
+createMeme(gImgs[0].id)
 
 function _createImgs() {
     return [
@@ -51,7 +52,7 @@ function createMeme(selectedImgId) {
     gMeme = {
         selectedImgId,
         selectedLineIdx: 0,
-        lines: [addLine({ x: 0, y: 0 }, 'Top text'), addLine({ x: 0, y: 100 }, 'Bottom text')]
+        lines: [addLine({ x: 10, y: 10 }, 'Top text'), addLine({ x: 0, y: 100 }, 'Bottom text')]
     }
 }
 
@@ -67,13 +68,43 @@ function getImgs() {
     return gImgs
 }
 
-function isLineClicked(clickedPos) {
-    
+function getSelectedLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function getLinesStartPos() {
+    return gMeme.lines.reduce((linesStartPos, line) => {
+        linesStartPos.push(line.pos)
+        return linesStartPos
+    }, [])
 }
 
 // text control
+function lineClickedIdx(clickedPos, ctx) {
+    console.log(clickedPos)
+    const clickedLineIdx = gMeme.lines.findIndex(line => {
+        const { pos, txt } = line
+        const {
+            width,
+            actualBoundingBoxAscent,
+            actualBoundingBoxDescent
+        } = ctx.measureText(txt)
+
+        return clickedPos.x >= pos.x &&
+            clickedPos.x <= pos.x + width &&
+            clickedPos.y >= pos.y - actualBoundingBoxAscent &&
+            clickedPos.y <= pos.y + actualBoundingBoxDescent
+    })
+    if (clickedLineIdx > -1) gMeme.selectedLineIdx = clickedLineIdx
+    return clickedLineIdx
+}
+
+function setLineDrag(isDrag) {
+    getSelectedLine().isDrag = isDrag
+}
+
 function setLineText(newTxt) {
-    gMeme.lines[gMeme.selectedLineIdx] = newTxt
+    getSelectedLine().txt = newTxt
 }
 
 function switchLine() {
@@ -83,12 +114,7 @@ function switchLine() {
 }
 
 function addLine(pos, txt, size = 48, clr = '#fff') {
-    return {
-        pos,
-        txt,
-        size,
-        clr
-    }
+    return { pos, isDrag: false, txt, size, clr }
 }
 
 function delLine() {
@@ -98,12 +124,12 @@ function delLine() {
 
 // text editing
 function changeFontSize(amount) {
-    if (gMeme.lines[selectedLineIdx].size <= 4) return
-    if (gMeme.lines[selectedLineIdx].size >= 400) return
+    if (getSelectedLine().size <= 4) return
+    if (getSelectedLine().size >= 400) return
 
-    gMeme.lines[selectedLineIdx].size += amount
+    getSelectedLine().size += amount
 }
 
 function changeClr(newClr) {
-    gMeme.lines[selectedLineIdx].clr = newClr
+    getSelectedLine().clr = newClr
 }

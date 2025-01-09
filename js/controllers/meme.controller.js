@@ -2,11 +2,12 @@
 
 var gElCanvas
 var gCtx
-var gLinesStartPos = []
+var gLinesStartPos
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+    gLinesStartPos = getLinesStartPos()
     renderGallery()
     renderKeywords()
 }
@@ -47,6 +48,14 @@ function toggleDropdown() {
 // canvas
 function onDown(ev) {
     const pos = getEvPos(ev)
+    const clickedLineIdx = lineClickedIdx(pos, gCtx)
+
+    if (clickedLineIdx === -1) return
+
+    setLineDrag(true)
+
+    gLinesStartPos[clickedLineIdx] = pos
+    document.body.style.cursor = 'grabbing'
 }
 
 function onMove(ev) {
