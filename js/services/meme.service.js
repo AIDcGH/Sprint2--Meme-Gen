@@ -52,8 +52,10 @@ function createMeme(selectedImgId) {
     gMeme = {
         selectedImgId,
         selectedLineIdx: 0,
-        lines: [addLine({ x: 10, y: 10 }, 'Top text'), addLine({ x: 0, y: 100 }, 'Bottom text')]
+        lines: []
     }
+    addLine({ x: 10, y: 10 }, 'Top text')
+    addLine({ x: 0, y: 100 }, 'Bottom text')
 }
 
 function getMeme() {
@@ -77,6 +79,10 @@ function getLinesStartPos() {
         linesStartPos.push(line.pos)
         return linesStartPos
     }, [])
+}
+
+function getSelectedLineIdx() {
+    return gMeme.selectedLineIdx
 }
 
 function getSelectedLine() {
@@ -113,6 +119,12 @@ function setLineDrag(isDrag) {
     getSelectedLine().isDrag = isDrag
 }
 
+function moveLine(dx, dy) {
+    const selectedLine = getSelectedLine()
+    selectedLine.pos.x += dx
+    selectedLine.pos.y += dy
+}
+
 function setLineText(newTxt) {
     getSelectedLine().txt = newTxt
 }
@@ -123,8 +135,8 @@ function switchLine() {
         curIdx !== gMeme.lines.length - 1 ? curIdx + 1 : 0
 }
 
-function addLine(pos, txt, size = 48, clr = '#fff') {
-    return { pos, isDrag: false, txt, size, clr }
+function addLine(pos, txt, size = 48, clr = {txt: '#fff', outline: '#000'}) {
+    gMeme.lines.push({ pos, isDrag: false, txt, size, clr, font:'impact' })
 }
 
 function delLine() {
@@ -140,6 +152,11 @@ function changeFontSize(amount) {
     getSelectedLine().size += amount
 }
 
-function changeClr(newClr) {
-    getSelectedLine().clr = newClr
+function changeFont(font) {
+    getSelectedLine().font = font
+}
+
+function changeClr(newClr, isOutline) {
+    if (isOutline) getSelectedLine().clr.outline = newClr
+    else getSelectedLine().clr.txt = newClr
 }

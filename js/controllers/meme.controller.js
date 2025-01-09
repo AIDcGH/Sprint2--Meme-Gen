@@ -3,14 +3,17 @@
 var gElCanvas
 var gCtx
 var gLinesStartPos
-var gLinesStartPos
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
-    gLinesStartPos = getLinesStartPos()
+    _linesStartPos()
     renderGallery()
     renderKeywords()
+}
+
+function _linesStartPos() {
+    gLinesStartPos = getLinesStartPos()
 }
 
 function renderKeywords() {
@@ -60,11 +63,20 @@ function onDown(ev) {
 }
 
 function onMove(ev) {
+    if (!getSelectedLine().isDrag) return
+    const pos = getEvPos(ev)
+    const lineIdx = getSelectedLineIdx()
 
+    moveLine(pos.x - gLinesStartPos[lineIdx].x, pos.y - gLinesStartPos[lineIdx])
+    gLinesStartPos[lineIdx] = pos
+
+    renderMeme()
 }
 
 function onUp() {
+    setLineDrag(false)
 
+    document.body.style.cursor = 'grab'
 }
 
 function getEvPos(ev) {
@@ -90,36 +102,47 @@ function getEvPos(ev) {
 }
 // text control
 function onText(txt) {
-
+    setLineText(txt)
+    renderMeme()
 }
 
 function onBtnMove(amount) {
-
+    moveLine(0, amount)
+    renderMeme()
 }
 
 function onSwitchLine() {
-
+    switchLine()
+    renderMeme()
 }
 
 function onAddLine(sticker = null) {
-
+    const txt = sticker || 'New line'
+    addLine({ x: gElCanvas.width / 2, y: gElCanvas.height / 2 }, txt)
+    _linesStartPos()
+    renderMeme()
 }
 
 function onDelLine() {
-
+    delLine()
+    _linesStartPos()
+    renderMeme()
 }
 
 // text editing
 function onChangeFontSize(amount) {
-
+    changeFontSize(amount)
+    renderMeme()
 }
 
 function onChangeFont(font) {
-
+    changeFont(font)
+    renderMeme()
 }
 
 function onChangeClr(isOutline = false) {
-
+    changeClr(document.getElementById('clr-input').value, isOutline)
+    renderMeme()
 }
 
 // meme control
