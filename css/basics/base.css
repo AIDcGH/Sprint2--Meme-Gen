@@ -50,3 +50,7 @@ ul {
 section {
     margin: var(--space-lg) 0;
 }
+
+img {
+    cursor: pointer;
+}

@@ -10,19 +10,6 @@
         gap: var(--space-sm);
     }
 
-    .find {
-        grid-template-columns: 1fr;
-    }
-
-    .meme-editor {
-        grid-template-columns: 1fr;
-        max-width: 100%;
-    }
-
-    .memes-gallery {
-        grid-template-columns: 1fr 1fr;
-    }
-
     nav .dropdown-menu {
         display: none;
     }
@@ -31,6 +18,13 @@
         display: block;
     }
 
+    .find {
+        grid-template-columns: 1fr;
+    }
+
+    .meme-editor {
+        grid-auto-flow: column;
+    }
 }
 
 @media (max-width: 480px) {

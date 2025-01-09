@@ -38,18 +38,6 @@ main {
     gap: var(--space-md);
 }
 
-.meme-editor {
-    background-color: var(--secondary-bg);
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: var(--space-md);
-    padding: var(--space-lg);
-    border-radius: 8px;
-    max-width: 1000px;
-    margin: auto;
-    position: relative;
-}
-
 .text-editor {
     display: flex;
     flex-direction: column;
