@@ -27,13 +27,52 @@ function renderKeywords() {
 
 function renderGallery() {
     var strHTML = getImgs().map(img => `
-        <img src="${img.url}" alt="" onclick="onSelectImg('${img.id}')">
+        <img src="${img.url}" alt="" id="${img.id}" onclick="onSelectImg('${img.id}')">
         `).join('')
     document.querySelector('.memes-gallery').innerHTML = strHTML
 }
 
-function renderMeme() {
+function onSelectImg(id) {
+    createMeme(id)
+    renderMeme()
+    document.querySelector('.meme-editor').style.visibility = 'visible'
+}
 
+function renderMeme() {
+    const meme = getMeme()
+    renderImg()
+    renderTxt()
+
+    function renderImg() {
+        const elImg = document.getElementById(meme.selectedImgId)
+        gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
+        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+    }
+
+    function renderTxt() {
+        gCtx.lineWidth = 1
+        gCtx.textAlign = 'center'
+        gCtx.textBaseline = 'middle'
+
+        meme.lines.forEach(line => {
+            gCtx.fillStyle = line.clr.txt
+            gCtx.strokeStyle = line.clr.outline
+            gCtx.font = `${line.size}px ${line.font}`
+          
+            gCtx.fillText(line.txt, line.pos.x, line.pos.y)
+            gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
+        })
+
+    var selectedLine = getSelectedLine()
+    const textMetrics = gCtx.measureText(selectedLine.txt)
+
+    const width = textMetrics.width
+    const height = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent
+
+    gCtx.strokeStyle = '#0c0';
+    gCtx.lineWidth = 0.75;
+    gCtx.strokeRect(selectedLine.pos.x - (width + 4) / 2, selectedLine.pos.y - (height + 4) / 2, width + 4, height + 4)
+    }
 }
 
 function onResize() {
@@ -52,6 +91,7 @@ function toggleDropdown() {
 // canvas
 function onDown(ev) {
     const pos = getEvPos(ev)
+    console.log(pos)
     const clickedLineIdx = lineClickedIdx(pos, gCtx)
 
     if (clickedLineIdx === -1) return
@@ -66,8 +106,7 @@ function onMove(ev) {
     if (!getSelectedLine().isDrag) return
     const pos = getEvPos(ev)
     const lineIdx = getSelectedLineIdx()
-
-    moveLine(pos.x - gLinesStartPos[lineIdx].x, pos.y - gLinesStartPos[lineIdx])
+    moveLine(pos.x - gLinesStartPos[lineIdx].x, pos.y - gLinesStartPos[lineIdx].y)
     gLinesStartPos[lineIdx] = pos
 
     renderMeme()
@@ -76,7 +115,7 @@ function onMove(ev) {
 function onUp() {
     setLineDrag(false)
 
-    document.body.style.cursor = 'grab'
+    document.body.style.cursor = ''
 }
 
 function getEvPos(ev) {
