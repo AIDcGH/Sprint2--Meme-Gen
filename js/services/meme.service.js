@@ -2,7 +2,7 @@
 
 const gImgs = _createImgs()
 
-const gKeywordSearchCountMap = _getkwSearchCountMap()
+const gKeywordSearchCountMap = _getKwSearchCountMap()
 
 var gMeme
 
@@ -37,7 +37,7 @@ function _createImg(url, keywords) {
     }
 }
 
-function _getkwSearchCountMap() {
+function _getKwSearchCountMap() {
     return gImgs
         .map(img => img.keywords)
         .flat()
@@ -57,6 +57,14 @@ function createMeme(selectedImgId) {
 
 function getMeme() {
     return gMeme
+}
+
+function getKwSearchCount() {
+    return gKeywordSearchCountMap
+}
+
+function getImgs() {
+    return gImgs
 }
 
 // text control

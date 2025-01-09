@@ -1,7 +1,24 @@
 'use strict'
 
 function onInit() {
+    renderGallery()
+    renderKeywords()
+}
 
+function renderKeywords() {
+    const kwsc = getKwSearchCount()
+    var strHTML = ''
+    for (let key in kwsc) {
+        strHTML += `<div>${key}</div>`
+    }
+    document.querySelector('.kw-filter').innerHTML = strHTML
+}
+
+function renderGallery() {
+    var strHTML = getImgs().map(img => `
+        <img src="${img.url}" alt="" onclick="onSelectImg('${img.id}')">
+        `).join('')
+    document.querySelector('.memes-gallery').innerHTML = strHTML
 }
 
 function renderMeme() {
