@@ -2,11 +2,12 @@
 
 const gImgs = _createImgs()
 
-const gKeywordSearchCountMap = _getKwSearchCountMap()
+const gKeywordSearchCountMap = _createKwSearchCountMap()
 
 var gMeme
 createMeme(gImgs[0].id)
 
+// creates
 function _createImgs() {
     return [
         _createImg('meme-imgs/meme-imgs (square)/1.jpg', ['political', 'adult']),
@@ -38,7 +39,7 @@ function _createImg(url, keywords) {
     }
 }
 
-function _getKwSearchCountMap() {
+function _createKwSearchCountMap() {
     return gImgs
         .map(img => img.keywords)
         .flat()
@@ -54,10 +55,11 @@ function createMeme(selectedImgId) {
         selectedLineIdx: 0,
         lines: []
     }
-    addLine({ x: 10, y: 10 }, 'Top text')
-    addLine({ x: 0, y: 100 }, 'Bottom text')
+    addLine({ x: 48, y: 8 }, 'Top text')
+    addLine({ x: 48, y: 92 }, 'Bottom text')
 }
 
+// gets
 function getMeme() {
     return gMeme
 }
@@ -85,17 +87,6 @@ function getSelectedLineIdx() {
     return gMeme.selectedLineIdx
 }
 
-function getSelectedLine() {
-    return gMeme.lines[gMeme.selectedLineIdx]
-}
-
-function getLinesStartPos() {
-    return gMeme.lines.reduce((linesStartPos, line) => {
-        linesStartPos.push(line.pos)
-        return linesStartPos
-    }, [])
-}
-
 // text control
 function lineClickedIdx(clickedPos, ctx) {
     const clickedLineIdx = gMeme.lines.findIndex(line => {
@@ -105,11 +96,14 @@ function lineClickedIdx(clickedPos, ctx) {
             actualBoundingBoxAscent,
             actualBoundingBoxDescent
         } = ctx.measureText(txt)
-
-        return clickedPos.x >= pos.x &&
-            clickedPos.x <= pos.x + width &&
-            clickedPos.y >= pos.y - actualBoundingBoxAscent &&
-            clickedPos.y <= pos.y + actualBoundingBoxDescent
+        const height = actualBoundingBoxAscent + actualBoundingBoxDescent
+        const left = pos.x - width / 2
+        const top = pos.y - height / 2
+        console.log(left, left + width, top, top + height)
+        return clickedPos.x >= left &&
+            clickedPos.x <= left + width &&
+            clickedPos.y >= top &&
+            clickedPos.y <= top + height
     })
     if (clickedLineIdx > -1) gMeme.selectedLineIdx = clickedLineIdx
     return clickedLineIdx
@@ -126,6 +120,7 @@ function moveLine(dx, dy) {
 }
 
 function setLineText(newTxt) {
+    console.log(getSelectedLine())
     getSelectedLine().txt = newTxt
 }
 
@@ -135,8 +130,8 @@ function switchLine() {
         curIdx !== gMeme.lines.length - 1 ? curIdx + 1 : 0
 }
 
-function addLine(pos, txt, size = 48, clr = {txt: '#fff', outline: '#000'}) {
-    gMeme.lines.push({ pos, isDrag: false, txt, size, clr, font:'impact' })
+function addLine(pos, txt, size = 16, clr = {txt: '#fff', outline: '#000'}) {
+    gMeme.lines.push({ pos, isDrag: false, txt, size, clr, font:'Impact' })
 }
 
 function delLine() {
