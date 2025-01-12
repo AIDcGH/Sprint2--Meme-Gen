@@ -21,8 +21,10 @@
     <main>
         <section class="find">
             <input class="search" type="search" placeholder="Search">
-            <article class="kw-filter"></article>
-            <button class="more-kw"></button>
+            <section class="kw">
+                <article class="kw-filter"></article>
+                <button class="more-kw"></button>
+            </section>
         </section>
         <section class="memes-gallery"></section>
         <section class="saved-memes">
@@ -38,7 +40,7 @@
             </section>
             <section class="text-editor">
                 <section class="control-text">
-                    <input class="edit" type="text" onchange="onText(this.value)">
+                    <input class="edit" type="text" oninput="onText(this.value)">
                     <button onclick="onBtnMove(-5)" title="move up">&mapstoup;</button>
                     <button onclick="onBtnMove(5)" title="move down">&mapstodown;</button>
                     <button onclick="onSwitchLine()" title="focus on another line">&vArr;</button>

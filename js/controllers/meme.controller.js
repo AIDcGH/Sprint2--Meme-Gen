@@ -33,9 +33,15 @@ function renderGallery() {
 }
 
 function onSelectImg(elImg, id) {
+    _clearEditorContent()
     createMeme(elImg, id)
     renderMeme()
     document.querySelector('.meme-editor').style.visibility = 'visible'
+}
+
+function _clearEditorContent() {
+    document.querySelector('.control-text input').value = ''
+    document.querySelector('.edit-text select').value = 'Impact'
 }
 
 function renderMeme() {
@@ -58,20 +64,26 @@ function renderMeme() {
             gCtx.fillStyle = line.clr.txt
             gCtx.strokeStyle = line.clr.outline
             gCtx.font = `${line.size}px ${line.font}`
-          
+
             gCtx.fillText(line.txt, line.pos.x, line.pos.y)
             gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
         })
 
-    var selectedLine = getSelectedLine()
-    const textMetrics = gCtx.measureText(selectedLine.txt)
+        var selectedLine = getSelectedLine()
+        gCtx.font = `${selectedLine.size}px ${selectedLine.font}`
+        const textMetrics = gCtx.measureText(selectedLine.txt)
 
-    const width = textMetrics.width
-    const height = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent
+        const width = textMetrics.width
+        const height = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent
 
-    gCtx.strokeStyle = '#0c0';
-    gCtx.lineWidth = 1.5;
-    gCtx.strokeRect(selectedLine.pos.x - (width + 16) / 2, selectedLine.pos.y - (height + 16) / 2, width + 16, height + 16)
+        gCtx.strokeStyle = '#0c0';
+        gCtx.lineWidth = 1.5;
+        gCtx.strokeRect(
+            selectedLine.pos.x - (width + 16) / 2,
+            selectedLine.pos.y - (height + 16) / 2,
+            width + 16,
+            height + 16
+        )
     }
 }
 
@@ -141,7 +153,7 @@ function getEvPos(ev) {
 }
 // text control
 function onText(txt) {
-    setLineText(txt)
+    setLineText(txt || 'Enter text')
     renderMeme()
 }
 
@@ -156,7 +168,7 @@ function onSwitchLine() {
 }
 
 function onAddLine(sticker = null) {
-    const txt = sticker || 'New line'
+    const txt = sticker || 'Enter text'
     addLine({ x: gElCanvas.width / 2, y: gElCanvas.height / 2 }, txt)
     _linesStartPos()
     renderMeme()

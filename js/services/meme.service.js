@@ -97,9 +97,10 @@ function lineClickedIdx(clickedPos, ctx) {
             actualBoundingBoxAscent,
             actualBoundingBoxDescent
         } = ctx.measureText(txt)
+
         const height = actualBoundingBoxAscent + actualBoundingBoxDescent
         const left = pos.x - width / 2
-        const top = pos.y - height / 2
+        const top = pos.y - actualBoundingBoxAscent
         console.log(`left: ${left} | left + width: ${left + width} | top: ${top} | top + height: ${top + height}`)
         return clickedPos.x >= left &&
             clickedPos.x <= left + width &&
@@ -121,7 +122,6 @@ function moveLine(dx, dy) {
 }
 
 function setLineText(newTxt) {
-    console.log(getSelectedLine())
     getSelectedLine().txt = newTxt
 }
 
