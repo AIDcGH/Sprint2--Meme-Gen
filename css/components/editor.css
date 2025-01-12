@@ -7,10 +7,10 @@
     place-content: center;
 
     position: fixed;
-    inset: 15vh 3vw;
+    inset: 5vw;
     margin: auto;
 
-    background-color: var(--secondary-bg);
+    background-color: var(--tertiary-bg);
     border-radius: 8px;
     max-width: 1000px;
 }
@@ -53,12 +53,12 @@ canvas {
     width: 100%;
 }
 
-.stickers button {
-    font-size: .75em;
-}
-
 .send-meme {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 5em);
     place-content: center;
+}
+
+.send-meme>* {
+    width: 50%;
 }

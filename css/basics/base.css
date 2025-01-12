@@ -28,6 +28,7 @@ body {
 a,
 button {
     display: grid;
+    place-content: center;
     place-items: center;
     padding: var(--space-sm) var(--space-md);
 

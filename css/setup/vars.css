@@ -2,13 +2,13 @@
     /* color palette */
     --primary-bg: #222;
     --secondary-bg: #333;
+    --tertiary-bg: #444;
     --primary-text: #eee;
     --secondary-text: #aaa;
     --accent-color: #296;
-    --button-bg: #444;
-    --button-hover-bg: #555;
+    --button-bg: #555;
+    --button-hover-bg: #666;
     --input-bg: #555;
-    --input-text-color: #eee;
 
     /* spacing */
     --space-sm: .5em;
