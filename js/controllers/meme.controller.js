@@ -44,7 +44,7 @@ function _clearEditorContent() {
     document.querySelector('.edit-text select').value = 'Impact'
 }
 
-function renderMeme() {
+function renderMeme(isFinished = false) {
     const meme = getMeme()
     renderImg()
     renderTxt()
@@ -68,6 +68,8 @@ function renderMeme() {
             gCtx.fillText(line.txt, line.pos.x, line.pos.y)
             gCtx.strokeText(line.txt, line.pos.x, line.pos.y)
         })
+
+        if (isFinished) return
 
         var selectedLine = getSelectedLine()
         gCtx.font = `${selectedLine.size}px ${selectedLine.font}`
@@ -201,10 +203,20 @@ function onSaveMeme() {
 
 }
 
-function onDownloadMeme() {
-
+function onDownloadMeme(elLink) {
+    renderMeme(true)
+    elLink.href = gElCanvas.toDataURL('image/jpeg')
 }
 
-function onShareMeme() {
+function onShareMeme(ev) {
+    renderMeme(true)
+    ev.preventDefault()
+    const canvasData = gElCanvas.toDataURL('image/jpeg')
 
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}`)
+    }
+
+    uploadImg(canvasData, onSuccess)
 }

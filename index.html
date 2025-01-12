@@ -72,8 +72,8 @@
             </section>
             <aside class="send-meme">
                 <button onclick="onSaveMeme()" title="save meme">&#8688;</button>
-                <button onclick="onDownloadMeme()" title="download meme">&#8681;</button>
-                <button onclick="onShareMeme()" title="share on Facebook">&#8682;</button>
+                <a href="#" onclick="onDownloadMeme(this)" download="my-meme.jpg" title="download meme">&#8681;</a>
+                <button onclick="onShareMeme(event)" title="share on Facebook">&#8682;</button>
             </aside>
         </section>
     </main>
