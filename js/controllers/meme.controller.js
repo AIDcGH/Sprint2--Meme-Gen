@@ -27,13 +27,13 @@ function renderKeywords() {
 
 function renderGallery() {
     var strHTML = getImgs().map(img => `
-        <img src="${img.url}" alt="" id="${img.id}" onclick="onSelectImg('${img.id}')">
+        <img src="${img.url}" alt="" id="${img.id}" onclick="onSelectImg(this, '${img.id}')">
         `).join('')
     document.querySelector('.memes-gallery').innerHTML = strHTML
 }
 
-function onSelectImg(id) {
-    createMeme(id)
+function onSelectImg(elImg, id) {
+    createMeme(elImg, id)
     renderMeme()
     document.querySelector('.meme-editor').style.visibility = 'visible'
 }
@@ -70,8 +70,8 @@ function renderMeme() {
     const height = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent
 
     gCtx.strokeStyle = '#0c0';
-    gCtx.lineWidth = 0.75;
-    gCtx.strokeRect(selectedLine.pos.x - (width + 4) / 2, selectedLine.pos.y - (height + 4) / 2, width + 4, height + 4)
+    gCtx.lineWidth = 1.5;
+    gCtx.strokeRect(selectedLine.pos.x - (width + 16) / 2, selectedLine.pos.y - (height + 16) / 2, width + 16, height + 16)
     }
 }
 

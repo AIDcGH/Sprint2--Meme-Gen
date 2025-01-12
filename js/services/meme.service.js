@@ -49,14 +49,15 @@ function _createKwSearchCountMap() {
         }, {})
 }
 
-function createMeme(selectedImgId) {
+function createMeme(elImg, selectedImgId) {
     gMeme = {
         selectedImgId,
         selectedLineIdx: 0,
         lines: []
     }
-    addLine({ x: 48, y: 8 }, 'Top text')
-    addLine({ x: 48, y: 92 }, 'Bottom text')
+    const { width, height } = getPicSize(elImg)
+    addLine({ x: width / 2, y: 48 }, 'Top text')
+    addLine({ x: width / 2, y: height - 48 }, 'Bottom text')
 }
 
 // gets
@@ -99,7 +100,7 @@ function lineClickedIdx(clickedPos, ctx) {
         const height = actualBoundingBoxAscent + actualBoundingBoxDescent
         const left = pos.x - width / 2
         const top = pos.y - height / 2
-        console.log(left, left + width, top, top + height)
+        console.log(`left: ${left} | left + width: ${left + width} | top: ${top} | top + height: ${top + height}`)
         return clickedPos.x >= left &&
             clickedPos.x <= left + width &&
             clickedPos.y >= top &&
@@ -130,8 +131,8 @@ function switchLine() {
         curIdx !== gMeme.lines.length - 1 ? curIdx + 1 : 0
 }
 
-function addLine(pos, txt, size = 16, clr = {txt: '#fff', outline: '#000'}) {
-    gMeme.lines.push({ pos, isDrag: false, txt, size, clr, font:'Impact' })
+function addLine(pos, txt, size = 48, clr = { txt: '#fff', outline: '#000' }) {
+    gMeme.lines.push({ pos, isDrag: false, txt, size, clr, font: 'Impact' })
 }
 
 function delLine() {
