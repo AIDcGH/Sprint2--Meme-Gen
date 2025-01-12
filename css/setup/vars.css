@@ -1,19 +1,20 @@
 :root {
     /* color palette */
-    --primary-bg: #111;
-    --secondary-bg: #222;
+    --primary-bg: #222;
+    --secondary-bg: #333;
     --primary-text: #eee;
     --secondary-text: #aaa;
     --accent-color: #296;
-    --button-bg: #333;
-    --button-hover-bg: #444;
-    --input-bg: #444;
+    --button-bg: #444;
+    --button-hover-bg: #555;
+    --input-bg: #555;
     --input-text-color: #eee;
 
     /* spacing */
     --space-sm: .5em;
     --space-md: 1em;
     --space-lg: 1.5em;
+    --layout-padding: 8em;
 
     /* font size */
     --font-size-small: 14px;

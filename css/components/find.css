@@ -19,7 +19,4 @@
 
 .more-kw {
     background-color: var(--accent-color);
-    border: none;
-    padding: var(--space-sm) var(--space-md);
-    border-radius: 8px;
 }
