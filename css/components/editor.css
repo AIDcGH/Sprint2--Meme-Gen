@@ -1,16 +1,26 @@
 .meme-editor {
     visibility: hidden;
+
     display: grid;
-    grid-template-columns: 20fr 1fr auto;
-    /* grid-auto-flow: column; */
+    grid-template-columns: 0 10fr 2fr 1fr 0;
     gap: var(--space-md);
     place-content: center;
+
     position: fixed;
     inset: 15vh 3vw;
+    margin: auto;
+
     background-color: var(--secondary-bg);
     border-radius: 8px;
     max-width: 1000px;
-    margin: auto;
+}
+
+.text-editor {
+    display: grid;
+    background-color: var(--primary-bg);
+    padding: 0 var(--space-md);
+    margin: 1px;
+    border-radius: 8px;
 }
 
 canvas {
@@ -22,15 +32,33 @@ canvas {
 .canvas-container {
     width: 100%;
     height: auto;
+    grid-column: 2;
 }
 
-.text-editor {
-    background-color: var(--primary-bg);
-    padding: 0 var(--space-md);
-    margin: 1px;
-    border-radius: 8px;
+.control-text,
+.edit-text,
+.stickers,
+.send-meme {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    gap: var(--space-sm);
+}
+
+.meme-editor button:not(.stickers) {
+    font-size: var(--font-size-large);
+}
+
+#clr-input {
+    width: 100%;
 }
 
 .stickers button {
     font-size: .75em;
+}
+
+.send-meme {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 5em);
+    place-content: center;
 }

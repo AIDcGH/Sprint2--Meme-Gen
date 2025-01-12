@@ -1,5 +1,5 @@
 header {
-    background-color: var(--primary-bg);
+    background-color: var(--secondary-bg);
     padding: var(--space-md);
 }
 
@@ -17,10 +17,6 @@ nav button {
     border-radius: 4px;
     padding: var(--space-sm) var(--space-md);
     font-size: var(--font-size-large);
-}
-
-nav button:hover {
-    background-color: var(--accent-color);
 }
 
 nav .dropdown-menu {

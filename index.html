@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body onload="onInit()">
-    <header>
-        <h1>LOGO</h1>
+
+<body class="main-layout" onload="onInit()">
+    <header class="full main-layout">
+        <h1 class="upper">Meme</h1>
         <nav>
             <button class="dropdown-btn" onclick="toggleDropdown()">Menu</button>
             <ul class="dropdown-menu">
@@ -21,10 +23,10 @@
     <main>
         <section class="find">
             <input class="search" type="search" placeholder="Search">
-            <section class="kw">
-                <article class="kw-filter"></article>
-                <button class="more-kw"></button>
-            </section>
+            <article class="kw">
+                <span class="kw-filter"></span>
+                <button class="more-kw">more...</button>
+            </article>
         </section>
         <section class="memes-gallery"></section>
         <section class="saved-memes">
@@ -35,12 +37,13 @@
         </section>
         <section class="meme-editor">
             <section class="canvas-container" onresize="onResize()">
-                <canvas width="500" height="500" onmousedown="onDown(event)" onmousemove="onMove(event)" onmouseup="onUp()"
-                ontouchstart="onDown(event)" ontouchmove="onMove(event)" ontouchend="onUp()"></canvas>
+                <canvas width="500" height="500" onmousedown="onDown(event)" onmousemove="onMove(event)"
+                    onmouseup="onUp()" ontouchstart="onDown(event)" ontouchmove="onMove(event)"
+                    ontouchend="onUp()"></canvas>
             </section>
             <section class="text-editor">
                 <section class="control-text">
-                    <input class="edit" type="text" oninput="onText(this.value)">
+                    <input class="edit full" type="text" oninput="onText(this.value)" placeholder="Enter text">
                     <button onclick="onBtnMove(-5)" title="move up">&mapstoup;</button>
                     <button onclick="onBtnMove(5)" title="move down">&mapstodown;</button>
                     <button onclick="onSwitchLine()" title="focus on another line">&vArr;</button>
@@ -48,25 +51,20 @@
                     <button onclick="onDelLine()" title="remove line">&#10006;</button>
                 </section>
                 <section class="edit-text">
-                    <section class="font">
-                        <button onclick="onChangeFontSize(2)" title="bigger font">A&#8314;</button>
-                        <button onclick="onChangeFontSize(-2)" title="smaller font">A&#8315;</button>
-                        <select onchange="onChangeFont(this.value)" title="font">
-                            <option value="Impact">Impact</option>
-                            <option value="Arial">Arial</option>
-                            <option value="'Comic Sans MS'">Comic Sans</option>
-                        </select>
-                    </section>
-                    <section class="clr">
-                        <button class="font-clr" onclick="onChangeClr()" title="font color">&#9733;</button>
-                        <input type="color" name="clr-input" id="clr-input">
-                        <button class="outline-clr" onclick="onChangeClr(true)" title="font outline color">&#9734;</button>
-                    </section>
+                    <button onclick="onChangeFontSize(2)" title="bigger font">A&#8314;</button>
+                    <select onchange="onChangeFont(this.value)" title="font">
+                        <option value="Impact">Impact</option>
+                        <option value="Arial">Arial</option>
+                        <option value="'Comic Sans MS'">Comic Sans</option>
+                    </select>
+                    <button onclick="onChangeFontSize(-2)" title="smaller font">A&#8315;</button>
+                    <button class="font-clr" onclick="onChangeClr()" title="font color">&#9733;</button>
+                    <input type="color" name="clr-input" id="clr-input">
+                    <button class="outline-clr" onclick="onChangeClr(true)" title="font outline color">&#9734;</button>
                 </section>
                 <section class="stickers">
                     <button onclick="onAddLine('😖')" title="add sticker">😖</button>
                     <button onclick="onAddLine('🧢')" title="add sticker">🧢</button>
-                    <button onclick="onAddLine('💣')" title="add sticker">💣</button>
                     <button onclick="onAddLine('🍔')" title="add sticker">🍔</button>
                 </section>
             </section>
@@ -83,4 +81,5 @@
     <script src="js/controllers/meme.controller.js"></script>
     <script src="js/controllers/gallery.controller.js"></script>
 </body>
+
 </html>
