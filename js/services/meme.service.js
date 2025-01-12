@@ -131,8 +131,15 @@ function switchLine() {
         curIdx !== gMeme.lines.length - 1 ? curIdx + 1 : 0
 }
 
-function addLine(pos, txt, size = 48, clr = { txt: '#fff', outline: '#000' }) {
-    gMeme.lines.push({ pos, isDrag: false, txt, size, clr, font: 'Impact' })
+function addLine(pos, txt) {
+    gMeme.lines.push({
+        pos,
+        isDrag: false,
+        txt, 
+        size: 48,
+        clr: { txt: '#fff', outline: '#000' },
+        font: 'Impact'
+    })
 }
 
 function delLine() {
