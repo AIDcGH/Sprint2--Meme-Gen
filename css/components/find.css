@@ -8,7 +8,7 @@
     padding: var(--space-sm);
     font-size: var(--font-size-large);
     border-radius: 6px;
-    width: 100%;
+    width: min(100%, 500px);
 }
 
 .kw-filter {
